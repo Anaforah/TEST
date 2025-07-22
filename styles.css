@@ -2,7 +2,7 @@
 /* Add font files for Audiowide */
 @font-face {
   font-family: 'Audiowide';
-  src: url('fonts/audiowide.woff') format('woff');
+  src: url('./fonts/audiowide.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
