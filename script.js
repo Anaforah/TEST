@@ -1,28 +1,27 @@
-const quemSomosOriginal = document.querySelector('a[href="#quem-somos"]');
-const servicosOriginal = document.querySelector('a[href="#servicos"]');
-const menuContainer = document.querySelector('.menu-container-6');
+const hamburger = document.querySelector('.hamburger');
+const menu = document.querySelector('.menu-container-6');
+const links = document.querySelectorAll('.menu-container-6 a');
 
-function removeOrInsertLinks() {
-  if (window.innerWidth <= 790) {
-    const quemSomos = document.querySelector('a[href="#quem-somos"]');
-    if (quemSomos) quemSomos.remove();
+function toggleMenu() {
+  const isOpen = menu.classList.toggle('open');
+  document.body.classList.toggle('no-scroll', isOpen);
 
-    const servicos = document.querySelector('a[href="#servicos"]');
-    if (servicos) servicos.remove();
-
+  if (isOpen) {
+    hamburger.innerHTML = '&times;'; // ✕
+    hamburger.setAttribute('aria-label', 'Fechar menu');
   } else {
-    if (!document.querySelector('a[href="#quem-somos"]') && quemSomosOriginal) {
-      menuContainer.insertBefore(quemSomosOriginal, menuContainer.firstChild);
-    }
-    if (!document.querySelector('a[href="#servicos"]') && servicosOriginal) {
-      if (quemSomosOriginal && quemSomosOriginal.nextSibling) {
-        menuContainer.insertBefore(servicosOriginal, quemSomosOriginal.nextSibling);
-      } else {
-        menuContainer.appendChild(servicosOriginal);
-      }
-    }
+    hamburger.innerHTML = '&#9776;'; // ☰
+    hamburger.setAttribute('aria-label', 'Abrir menu');
   }
 }
 
-window.addEventListener('load', removeOrInsertLinks);
-window.addEventListener('resize', removeOrInsertLinks);
+hamburger.addEventListener('click', toggleMenu);
+
+// Fecha menu ao clicar num link
+links.forEach(link => {
+  link.addEventListener('click', () => {
+    if (menu.classList.contains('open')) {
+      toggleMenu();
+    }
+  });
+});
