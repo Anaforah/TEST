@@ -108,12 +108,19 @@ img {
 }
 
 .nav-bar-4 {
+   position: fixed;         /* Fixa no topo */
+  top: 0;                  /* Alinha ao topo */
+  left: 0;                 /* Alinha à esquerda */
+  right: 0;                /* Estica até a direita */
+  z-index: 1000;           /* Fica sobre outros elementos */
+  background-color: white; 
+  
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   gap: 40px;
-  padding: 0px 52px 0px 52px;
+  padding: 8px 52px 8px 52px;
   flex-grow: 0;
   flex-shrink: 1;
   width: 100%;
